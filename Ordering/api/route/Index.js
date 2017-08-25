@@ -1,5 +1,5 @@
 var path = require('path');
-var Account = require('./Account');
+var Menu = require('./Menu');
 
 module.exports = {
     Register: function(express){
@@ -15,16 +15,7 @@ module.exports = {
 		      next();
 		    }
 		});
-        Account.Register(app);
-        
-
-        app.listen(999);
+        Menu.Register(app);
+        app.listen(1212);
     }
 }
-// exports.Register = function(express){
-// 	var app = express();
-// 	Account.Register(app);
-//     Product.Register(app);
-
-//     app.listen(888);
-// }
