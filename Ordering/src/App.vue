@@ -6,10 +6,10 @@
 </template>
 
 <script>
-
+import light from "./components/light/light.vue";
   export default {
     components: {
-     
+     	light,
     }
   }
 </script>
