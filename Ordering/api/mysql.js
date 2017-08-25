@@ -70,19 +70,19 @@ module.exports = {
 		});
 		connection.end();
 	},
-	queryCode: function(data, callback){
-		LinkMysql();
-		var  sql = 'SELECT * FROM goods WHERE Code = '+ data +'';
-		connection.query(sql,function (err, result) {
-		   if(!err){
-			    if(callback && typeof callback == 'function'){
-			    	callback(result);
+	// queryCode: function(data, callback){
+	// 	LinkMysql();
+	// 	var  sql = 'SELECT * FROM goods WHERE Code = '+ data +'';
+	// 	connection.query(sql,function (err, result) {
+	// 	   if(!err){
+	// 		    if(callback && typeof callback == 'function'){
+	// 		    	callback(result);
 			    	
-			    }
-		    }       
-		});
-		connection.end();
-	},
+	// 		    }
+	// 	    }       
+	// 	});
+	// 	connection.end();
+	// },
 	user: function(data, callback){
 		LinkMysql();
 		var name = data.name, psw = data.psw;

@@ -1,5 +1,5 @@
 var path = require('path');
-var Menu = require('./Menu');
+var users = require('./users');
 
 module.exports = {
     Register: function(express){
@@ -15,7 +15,7 @@ module.exports = {
 		      next();
 		    }
 		});
-        Menu.Register(app);
+        users.Register(app);
         app.listen(1212);
     }
 }
