@@ -6,6 +6,10 @@
 </template>
 
 <script>
+
+
+import overBookingCom from "./components/OverBooking/overBookingCom.vue";
+
 import serve from "./components/serve/serve.vue"
 import cook from "./components/cookhouse/cook.vue"
 import  backstageComponent from './components/backstage/backstage.vue';
@@ -15,8 +19,13 @@ import mainpage from "./components/mainpage/mainpage.vue"
      	serve,
      	backstageComponent,
      	cook,
-      mainpage
+
+      mainpage,
+
+      overBookingCom,
+
 	}
+
 
   }
 </script>

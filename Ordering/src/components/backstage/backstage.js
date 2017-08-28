@@ -4,6 +4,7 @@ import Axios from 'axios';
 const state = {
 	classify: [],
 	category: [],
+	msg: {}
 }
 
 const actions = {
@@ -13,7 +14,10 @@ const actions = {
 	},
 	category: (store, value) => {
 		store.commit('category',  value)
-	}
+	},
+	compilemsg: (store, value) => {
+		store.commit('compilemsg',  value)
+	},
 }
 const mutations = {
 	classify: (store) => {
@@ -30,8 +34,10 @@ const mutations = {
 
 			// console.log('data', res.data)
 		})
+	},
+	compilemsg: (store, value) =>{
+		state.msg = value;
 	}
-
 }
 
 export default {
