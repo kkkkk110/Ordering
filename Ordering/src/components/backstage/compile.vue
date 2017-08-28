@@ -134,7 +134,6 @@
     created: function(){
       // console.log(this.$parent.msg)
       console.log('adasd', this.$store.state.backstagejs.msg)
-    }
-
+    },
   }
 </script>

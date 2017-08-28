@@ -29,8 +29,8 @@
 					<span class="last"><el-input
 						  placeholder="搜索..."
 						  icon="search"
-						  v-model="input2"
-						  @click="seek(input2)">
+						  v-model="inputSeek"
+						  @click="seek(inputSeek)">
 						</el-input>
 					</span>
 				</p>
@@ -84,7 +84,7 @@
 		name: 'backstage',
 		data: function() {
 			return {
-				input2: '',
+				inputSeek: '',
 				// classifyArr: [],
 				// length: this.$store.state.backstagejs.category.length ,
 				head: '',
@@ -176,6 +176,13 @@
 		},
 		beforeMount: function(){
 			
-		}
+		},
+		mounted: function(){
+			document.onkeyup = function(e){
+				if(e.keyCode == 13){
+					this.seek(this.inputSeek)
+				}
+			}.bind(this)
+	    }
 	}
 </script>
