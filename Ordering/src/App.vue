@@ -7,9 +7,11 @@
 
 <script>
 import light from "./components/light/light.vue";
+import  backstageComponent from './components/backstage/backstage.vue';
   export default {
     components: {
      	light,
+     	backstageComponent
     }
   }
 </script>
