@@ -99,6 +99,22 @@ module.exports = {
 		});
 		connection.end();
 	},
+	seek: function(list, data, callback){
+		LinkMysql();
+		// SELECT * FROM menufile WHERE menufile.name LIKE '%红%'
+		var key = Object.keys(data)[0];
+
+		var sql = `SELECT * FROM ${list} WHERE ${list}.${key} LIKE '%${data[key]}%'`;
+
+		connection.query(sql, function(err, result) {
+		    if(!err){
+			    if(callback && typeof callback == 'function'){
+			    	callback(result);
+			    }
+		    }          
+		});
+		connection.end();
+	},
 	// queryCode: function(data, callback){
 	// 	LinkMysql();
 	// 	var  sql = 'SELECT * FROM goods WHERE Code = '+ data +'';
