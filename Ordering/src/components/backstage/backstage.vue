@@ -62,6 +62,9 @@
 		<div class="add" v-show="addshade">
             <addComponent></addComponent>   
 		</div>
+		<div class="compile" v-show="compileshade">
+			<compileComponent></compileComponent>
+		</div>
 	</div>
 
 </template>
@@ -73,6 +76,7 @@
 	import './backstage.scss';
 	import Axios from 'axios';
 	import addComponent from './add.vue';
+	import compileComponent from './compile.vue';
 	console.log(addComponent)
 	Vue.use(ElementUI);
 
@@ -87,12 +91,14 @@
 				// category: [],
 				shade: false,
 				addshade: false,
+				compileshade: false,
 				delshade: true,
 				currentIndex: null,
 			}	
 		},
 		components: {
 			addComponent,
+			compileComponent
 		},
 		methods: {
 			btn: function(value, index){
@@ -112,12 +118,12 @@
 				if(!this.shade){
 					this.shade = true;
 					this.addshade = true;
-				}
-				
+				}				
 			},
 			compile: function(){
-				if(!this.shade){
+				if(!this.shade && this.head){
 					this.shade = true;
+					this.compileshade = true;
 				}
 			},
 			del: function(){
@@ -151,8 +157,7 @@
 							message: '已取消删除'
 						});          
 					});
-				}
-				
+				}				
 			},
 			Selected: function(index, ev){
 				this.currentIndex = index;

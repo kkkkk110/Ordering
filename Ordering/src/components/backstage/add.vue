@@ -26,7 +26,7 @@
       <el-option label="否" value="否"></el-option>
     </el-select>
   </el-form-item>
-  <el-form-item label="添加时间" required>
+ <!--  <el-form-item label="添加时间" required>
     <el-col :span="11">
       <el-form-item prop="date1">
         <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1" style="width: 100%;"></el-date-picker>
@@ -38,7 +38,7 @@
         <el-time-picker type="fixed-time" placeholder="选择时间" v-model="ruleForm.date2" style="width: 100%;"></el-time-picker>
       </el-form-item>
     </el-col>
-  </el-form-item>
+  </el-form-item> -->
   <el-form-item label="菜品详情" prop="desc">
     <el-input type="textarea" v-model="ruleForm.desc"></el-input>
   </el-form-item>
@@ -64,8 +64,8 @@
           VIPprice: '',
           cailei: '',
           discount: '',
-          date1: '',
-          date2: '',
+          // date1: '',
+          // date2: '',
           delivery: false,
           type: [],
           desc: ''
@@ -81,18 +81,21 @@
           price: [
             { required: true, message: '请输入菜品价格', trigger: 'blur' },
           ],
+          VIPprice: [
+            { required: true, message: '请输入菜品价格', trigger: 'blur' },
+          ],
           cailei: [
             { required: true, message: '请选择菜品分类', trigger: 'change' }
           ],
-          date1: [
-            { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
-          ],
-          date2: [
-            { type: 'date', required: true, message: '请选择时间', trigger: 'change' }
-          ],
-          type: [
-            { type: 'array', required: true, message: '请至少选择一个活动性质', trigger: 'change' }
-          ],
+          // date1: [
+          //   { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
+          // ],
+          // date2: [
+          //   { type: 'date', required: true, message: '请选择时间', trigger: 'change' }
+          // ],
+          // type: [
+          //   { type: 'array', required: true, message: '请至少选择一个活动性质', trigger: 'change' }
+          // ],
           desc: [
             { required: true, message: '请填写活菜品详情', trigger: 'blur' }
           ]
@@ -107,8 +110,8 @@
         Axios.get('http://localhost:1212/add?' + str).then(function(res){
            this.$parent.shade = false;
            this.$parent.addshade = false;
-          // state.category = res.data;
-          console.log(res)
+           this.$message({ type: 'success',message: '提交成功!'})
+           this.$parent.btn(this.$parent.head.substring(3), this.$parent.head.substring(0, 1)-1);
         }.bind(this))
         // this.$refs[formName].validate((valid) => {
         //   if (valid) {
