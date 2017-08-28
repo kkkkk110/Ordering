@@ -110,17 +110,17 @@
         Axios.get('http://localhost:1212/add?' + str).then(function(res){
            this.$parent.shade = false;
            this.$parent.addshade = false;
-           this.$message({ type: 'success',message: '提交成功!'})
-           this.$parent.btn(this.$parent.head.substring(3), this.$parent.head.substring(0, 1)-1);
+           this.$message({ type: 'success',message: '提交成功!'});
+           let idx, arr = this.$store.state.backstagejs.classify;
+           for(let i = 0; i< arr.length; i ++){
+              if(arr[i].name == this.ruleForm.cailei){
+                idx = i;
+                break;
+              }
+           }
+           this.$parent.btn(this.ruleForm.cailei, idx);
         }.bind(this))
-        // this.$refs[formName].validate((valid) => {
-        //   if (valid) {
-        //     alert('submit!');
-        //   } else {
-        //     console.log('error submit!!');
-        //     return false;
-        //   }
-        // });
+        
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();

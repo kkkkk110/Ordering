@@ -40,13 +40,19 @@ module.exports = {
                    response.send({succeed:true}) 
                 }else{
                     response.send({succeed:false}) 
-                }
-                
+                }    
             })
         }),
         app.get('/add', function(request, response){
             console.log(request.query)
             mysql.add('menufile', request.query, function(result){
+                response.send(result);
+            })
+        }),
+
+        app.get('/renewal', function(request, response){
+            console.log(request.query)
+            mysql.update('menufile', request.query, function(result){
                 response.send(result);
             })
         })

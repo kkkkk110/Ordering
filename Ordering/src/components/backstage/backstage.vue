@@ -30,7 +30,7 @@
 						  placeholder="搜索..."
 						  icon="search"
 						  v-model="input2"
-						  @click="handleIconClick(input2)">
+						  @click="seek(input2)">
 						</el-input>
 					</span>
 				</p>
@@ -63,7 +63,7 @@
             <addComponent></addComponent>   
 		</div>
 		<div class="compile" v-show="compileshade">
-			<compileComponent></compileComponent>
+			<compileComponent :msgObj="msgObj"></compileComponent>
 		</div>
 	</div>
 
@@ -93,7 +93,8 @@
 				addshade: false,
 				compileshade: false,
 				delshade: true,
-				currentIndex: null,
+				currentIndex:  0,
+				msgObj: {}
 			}	
 		},
 		components: {
@@ -111,7 +112,7 @@
 			post: function(){
 				this.$store.dispatch('actionsPost')
 			},
-			handleIconClick: function(ev){
+			seek: function(ev){
 				console.log(ev)
 			},
 			add: function(){
@@ -124,10 +125,15 @@
 				if(!this.shade && this.head){
 					this.shade = true;
 					this.compileshade = true;
+					
+					this.msgObj = this.$store.state.backstagejs.category[this.currentIndex]
+
+					// this.$store.dispatch('compilemsg', this.msgObj)
+					// console.log('adasd', this.$store.state.backstagejs.category)
 				}
 			},
 			del: function(){
-				if(this.currentIndex != null){
+				if(this.currentIndex != null && this.head){
 					// console.log(this.category[this.currentIndex])
 					// console.log(this.$confirm)
 					this.$confirm('此操作将永久删除这条信息, 是否继续?', '提示', {
