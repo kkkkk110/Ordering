@@ -46,6 +46,34 @@ module.exports = {
 		});
 		connection.end();
 	},
+	//查询一个表所有数据
+	query: function(list, callback){
+		LinkMysql();
+		var  sql = 'SELECT * FROM ' + ' '+ list;
+		connection.query(sql, function(err, result) {
+		    if(!err){
+			    if(callback && typeof callback == 'function'){
+			    	callback(result);
+			    }
+		    }          
+		});
+		connection.end();
+	},
+	category: function(list, data, callback){
+		LinkMysql();
+		// SELECT * FROM menufile WHERE menufile.FenLei = '点心'
+		var key = Object.keys(data)[0];
+		var sql = 'SELECT * FROM ' + ' '+ list+ ' '+'WHERE ' + list+'.'+ key + '='+"'"+data[key]+"'";
+		console.log(sql); console.log(key);
+		connection.query(sql, function(err, result) {
+		    if(!err){
+			    if(callback && typeof callback == 'function'){
+			    	callback(result);
+			    }
+		    }          
+		});
+		connection.end();
+	},
 	update: function(list, data, callback){
 		LinkMysql();
 		var arr = [], item = '', id = '';
