@@ -15,5 +15,4 @@ new Vue({
 
   render: h => h(app)
 
-
 })

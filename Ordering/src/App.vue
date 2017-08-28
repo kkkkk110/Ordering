@@ -8,10 +8,12 @@
 <script>
 import light from "./components/light/light.vue";
 import serve from "./components/serve/serve.vue"
+import cook from "./components/cookhouse/cook.vue"
   export default {
     components: {
      	light,
-     	serve
+     	serve,
+     	cook
     }
   }
 </script>
