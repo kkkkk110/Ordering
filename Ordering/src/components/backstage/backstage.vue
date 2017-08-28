@@ -56,7 +56,6 @@
 						<span>是</span>
 					</li>
 				</ul>
-				<p v-show="this.$store.state.backstagejs.category.length >15">6666</p>
 			</div>
 		</div>
 		<div class="shade" v-show="shade"></div>
@@ -67,7 +66,6 @@
 			<compileComponent :msgObj="msgObj"></compileComponent>
 		</div>
 	</div>
-
 </template>
 
 <script>
@@ -86,7 +84,6 @@
 			return {
 				inputSeek: '',
 				// classifyArr: [],
-				// length: this.$store.state.backstagejs.category.length ,
 				head: '',
 				arr: this.$store.state.backstagejs.category,
 				// category: [],
