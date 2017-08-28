@@ -10,18 +10,18 @@
 				<p><i class="el-icon-plus"></i>新增分类</p>
 				<p>全部菜品</p>
 				<ul>
-					<li v-for="(obj, index) in classifyArr" @click="btn(obj.name,index)">{{index + 1}}. {{obj.name}}</li>
+					<li v-for="(obj, index) in this.$store.state.backstagejs.classify" @click="btn(obj.name,index)" :key="index">{{index + 1}}. {{obj.name}}</li>
 				</ul>
 			</div>
 			<div class="right">
 				<p class="main_head">
 					<span>{{head}}</span>
-					<span>共{{length}}项</span>
+					<span>共{{this.$store.state.backstagejs.category.length}}项</span>
 				</p>
 				<p class="main_nav">
-					<span><i class="el-icon-plus i"></i>新增菜品</span>
-					<span><i class="el-icon-edit i"></i>编辑菜品</span>
-					<span><i class="el-icon-delete i"></i>删除菜品</span>
+					<span @click="add"><i class="el-icon-plus i"></i>新增菜品</span>
+					<span @click="compile"><i class="el-icon-edit i"></i>编辑菜品</span>
+					<span @click="del"><i class="el-icon-delete i"></i>删除菜品</span>
 					<span><i class="el-icon-information i"></i>停用菜品</span>
 
 					<span><i class="el-icon-plus i"></i>新增套餐</span>
@@ -45,7 +45,7 @@
 					<span>禁止折扣</span>
 				</p>
 				<ul>
-					<li v-for="(obj, index) in category">
+					<li v-for="(obj, index) in this.$store.state.backstagejs.category" @click="Selected(index, $event)" :class="{active: index == currentIndex}" :key="index">
 						<span>{{index+1}}</span>
 						<span>{{obj.number}}</span>
 						<span>{{obj.name}}</span>
@@ -57,9 +57,11 @@
 					</li>
 				</ul>
 			</div>
-
 		</div>
-		
+		<div class="shade" v-show="shade"></div>
+		<div class="add" v-show="addshade">
+            <addComponent></addComponent>   
+		</div>
 	</div>
 
 </template>
@@ -70,45 +72,93 @@
 	import 'element-ui/lib/theme-default/index.css';
 	import './backstage.scss';
 	import Axios from 'axios';
-	Vue.use(ElementUI)
+	import addComponent from './add.vue';
+	console.log(addComponent)
+	Vue.use(ElementUI);
 
 	export default {
 		name: 'backstage',
 		data: function() {
 			return {
 				input2: '',
-				classifyArr: [],
-				length: 0,
+				// classifyArr: [],
+				// length: this.$store.state.backstagejs.category.length ,
 				head: '',
-				category: []
+				// category: [],
+				shade: false,
+				addshade: false,
+				delshade: true,
+				currentIndex: null,
 			}	
+		},
+		components: {
+			addComponent,
 		},
 		methods: {
 			btn: function(value, index){
-				console.log(value)
+				// console.log('btn666')
+				// console.log(value)
 				this.head = (index+1) + '. '+ value;
-				// this.$store.dispatch('category', value);
-				Axios.get('http://localhost:1212/category?FenLei=' + value).then(function(res){
-					this.category = res.data;
-					this.length = res.data.length;
-					console.log('data', res.data)
-				}.bind(this));
+				this.currentIndex = 0;
+				this.$store.dispatch('category', value);
 			},
 			post: function(){
 				this.$store.dispatch('actionsPost')
 			},
 			handleIconClick: function(ev){
 				console.log(ev)
+			},
+			add: function(){
+				if(!this.shade){
+					this.shade = true;
+					this.addshade = true;
+				}
+				
+			},
+			compile: function(){
+				if(!this.shade){
+					this.shade = true;
+				}
+			},
+			del: function(){
+				if(this.currentIndex != null){
+					// console.log(this.category[this.currentIndex])
+					// console.log(this.$confirm)
+					this.$confirm('此操作将永久删除这条信息, 是否继续?', '提示', {
+							confirmButtonText: '确定',
+							cancelButtonText: '取消',
+							type: 'warning'
+						}).then(() => {
+							Axios.get('http://localhost:1212/del?id=' + this.category[this.currentIndex].id).then(function(res){
+								if(res.data.succeed){
+									this.btn(this.head.substring(3), this.head.substring(0, 1)-1);
+									this.$message({
+										type: 'success',
+										message: '删除成功!'
+									});
+								}else{
+									this.$message({
+										type: 'error',
+										message: '删除失败!'
+									});
+								}
+							}.bind(this));
+							
+						}).catch(() => {
+							this.$message({
+							type: 'info',
+							message: '已取消删除'
+						});          
+					});
+				}
+				
+			},
+			Selected: function(index, ev){
+				this.currentIndex = index;
 			}
 		},
 		created: function(){
-			console.log('vue', this.$store.state.backstagejs.classify)
-			// this.$store.dispatch('classify')
-
-			Axios.get('http://localhost:1212/classify').then(function(res){
-				this.classifyArr = res.data;
-				console.log('data', res.data)
-			}.bind(this));
+			this.$store.dispatch('classify')
 		},
 		beforeMount: function(){
 			

@@ -33,6 +33,17 @@ module.exports = {
                 console.log(request.query)
                 response.send(result)
             })
+        }),
+        app.get('/del', function(request, response){
+            mysql.delete('menufile', request.query, function(result){
+                console.log(result)
+                if(result.affectedRows > 0){
+                   response.send({succeed:true}) 
+                }else{
+                    response.send({succeed:false}) 
+                }
+                
+            })
         })
     }
 }
