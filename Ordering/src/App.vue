@@ -7,9 +7,11 @@
 
 <script>
 import light from "./components/light/light.vue";
+import overBookingCom from "./components/OverBooking/overBookingCom.vue";
   export default {
     components: {
      	light,
+     	overBookingCom
     }
   }
 </script>
