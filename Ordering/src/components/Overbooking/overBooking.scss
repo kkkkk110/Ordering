@@ -72,6 +72,46 @@
 			}
 
 		}
+		.cooklist{
+			width:95%;
+			margin:0 auto;
+			span{
+				display:inline-block;
+			}
+			.cooklist_title{
+				font-size:0.15rem;
+
+				.el-checkbox__label{
+					font-size:0.15rem;
+				}
+			}
+			.cooklist_data{
+				ul{
+					li{
+						font-size:0.15rem;
+						.title_cook{
+							i{
+								display:inline-block;
+								width:0.5rem;
+								height:0.5rem;
+								img{
+									width:100%;
+									height:100%;
+								}
+							}
+						}
+					}
+				}
+			}
+			
+		}
+		.buttonList{
+			.underDan{
+				width:0.5rem;
+				height:0.3rem;
+				font-size:0.15rem;
+			}
+		}
 	}
 }
 

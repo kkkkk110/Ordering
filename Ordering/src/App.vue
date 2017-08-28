@@ -6,13 +6,22 @@
 </template>
 
 <script>
-import light from "./components/light/light.vue";
+
+
 import overBookingCom from "./components/OverBooking/overBookingCom.vue";
+
+import serve from "./components/serve/serve.vue"
+import cook from "./components/cookhouse/cook.vue"
+import  backstageComponent from './components/backstage/backstage.vue';
   export default {
     components: {
-     	light,
-     	overBookingCom
-    }
+     	serve,
+     	backstageComponent,
+     	cook,
+      overBookingCom,
+	}
+
+
   }
 </script>
 

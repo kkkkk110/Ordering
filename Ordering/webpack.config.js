@@ -32,14 +32,6 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader'
-      },
-      {
-        test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
-        loader: 'file-loader'
-      },
-      {
           test: /\.scss$/,
           exclude: /node_modules/,
           use: [{
@@ -50,7 +42,15 @@ module.exports = {
               loader: "sass-loader" // compiles Sass to CSS
           }]
           // loader: ExtractTextPlugin.extract("style", 'css!sass') //这里用了样式分离出来的插件，如果不想分离出来，可以直接这样写 loader:'style!css!sass'
-      }         
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
+        loader: 'file-loader'
+      }
     ]
   },
   resolve: {

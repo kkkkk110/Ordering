@@ -1,14 +1,21 @@
 import Vue from 'vue';
 
 
+
 import Vuex from 'vuex';
+
+
+
+
+
 
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-default/index.css';
-import router from "./router/index";
-import app from "./App.vue";
-import store from "./vuex/store";
+
+import router from "./router/index"
+import app from "./App.vue"
+import store from "./vuex/store"
 
 Vue.use(ElementUI);
 
@@ -17,4 +24,5 @@ new Vue({
   store,
   router,
   render: h => h(app)
+
 })

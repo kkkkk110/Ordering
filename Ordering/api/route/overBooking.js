@@ -23,27 +23,13 @@ module.exports = {
         //         response.send(result);
         //     })
         // });
-        app.get('/classify', function(request, response){
-            mysql.query('classify', function(result){
+        app.post('/overBooking', function(request, response){
+
+            mysql.query('menufile', function(result){
                 response.send(result);
+                console.log('666',result);
             })
         })
-        app.get('/category', function(request, response){
-            mysql.category('menufile', request.query, function(result){
-                console.log(request.query)
-                response.send(result)
-            })
-        }),
-        app.get('/del', function(request, response){
-            mysql.delete('menufile', request.query, function(result){
-                console.log(result)
-                if(result.affectedRows > 0){
-                   response.send({succeed:true}) 
-                }else{
-                    response.send({succeed:false}) 
-                }
-                
-            })
-        })
+        
     }
 }
