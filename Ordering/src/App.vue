@@ -6,14 +6,16 @@
 </template>
 
 <script>
-// import light from "./components/light/light.vue";
-import serve from "./components/serve/serve.vue";
+import serve from "./components/serve/serve.vue"
+import cook from "./components/cookhouse/cook.vue"
 import  backstageComponent from './components/backstage/backstage.vue';
   export default {
     components: {
      	serve,
-     	backstageComponent
+     	backstageComponent,
+     	cook
 	}
+
   }
 </script>
 
