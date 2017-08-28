@@ -31,7 +31,11 @@
 
 
 <script>
+<<<<<<< HEAD
 	// import "./cook.scss";
+=======
+	import "./cook.scss";
+>>>>>>> 97f91143802fe1424885748ac9b29e8854c006a8
 	import vue from "vue"
 	
 	var socket = io.connect('ws://localhost:888');
