@@ -7,8 +7,9 @@
 				<transition-group nama="lis">
 					<div v-for="(value,index) in num" class="f_men" :key="index" @click="click" :id="index" >
 
-						菜名：{{value.name}}<br/>
-						数量:	
+						名称：{{value.name}}<br/>
+						编号:{{value.number}}<br/>
+						口味：{{value.tese}}	
 						<transition appear appear-class="f-enter" appear-active-class="f-enter-active">
 							<div class="men" :key="index"></div>
 						</transition>
@@ -21,8 +22,9 @@
 			<p>正在进行菜单</p>
 			<div class="right-menio">
 				<div v-for="(value,index) in cook" class="f_menio" @click="clickio" :id="index">
-				菜名：{{value}}<br/>
-				数量：
+				名称：{{value.name}}<br/>
+				编号：{{value.number}}<br/>
+				口味：{{value.tese}}
 				<transition appear appear-class="f-enter" appear-active-class="f-enter-active">
 					<div class="menio"></div>
 				</transition>
@@ -37,11 +39,11 @@
 <script>
 	import "./cook.scss";
 	import vue from "vue"
-	
+
 	var socket = io.connect('ws://localhost:888');
 	
 
-	
+		
 	export default{
 		data:function(){
 			return {
@@ -50,10 +52,10 @@
 			}
 		},
 		methods:{
-			addnum:function(){
-				this.num.splice(0,1)
-				this.cook.push("sfsf")
-			},
+			// addnum:function(){
+			// 	this.num.splice(0,1)
+			// 	this.cook.push("sfsf")
+			// },
 			click:function(event){
 		
 				this.cook.push(this.num[event.target.id])
@@ -73,9 +75,16 @@
 	
 				socket.on('bbs',function(aa){
 				
-						
-						this.num=aa
-						console.log(aa)
+						for(var i=0;i<aa.length;i++){
+							var soc = {}
+							soc.name = aa[i].name;
+							soc.number = aa[i].number;
+							soc.tese = aa[i].TeSe
+							this.num.push(soc)
+						}
+						console.log(this.num)
+					
+				
 					}.bind(this))
 		}
 	
