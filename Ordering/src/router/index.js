@@ -9,6 +9,7 @@ import backstageComponent from '../components/backstage/backstage.vue';
 import cook from "../components/cookhouse/cook.vue";
 // import light from "../components/light/light.vue"
 import serve from "../components/serve/serve.vue"
+import mainpage from "../components/mainpage/mainpage.vue"
 
 
 Vue.use(VueRouter)
@@ -21,7 +22,8 @@ const router = new VueRouter({
 
 		// {path:'/light', component:light},
 		{path:'/cook',component:cook},
-		{path:'/serve',component:serve}
+		{path:'/serve',component:serve},
+		{path:'/',component:mainpage}
 
 
 

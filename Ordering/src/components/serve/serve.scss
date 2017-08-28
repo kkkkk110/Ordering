@@ -1,5 +1,7 @@
 .serve{
 	height:1350px;
+	background: url('../../assets/imgs/timg15.jpg');
+	background-size:100% 100%;
 	.logo{
 		width: 100%;
 		height: 150px;
@@ -8,13 +10,17 @@
 
 	}
 		.servegoods{
-			font-size: 30px;
+			font-size: 40px;
 			width: 800px;
 			height: 250px;
 			background:url('../../assets/imgs/timg9.jpg');
 			background-size:100% 100%;
 			margin:20px auto;
 			border-radius: 10px;
+			opacity: 0.9;
+			box-sizing:border-box;
+			padding:30px;
+			font-weight: bold;
 		}
 		.list-enter{opacity: 0; transform: translateY(-300px);}
 		.list-enter-active{transition: all .5s;}
