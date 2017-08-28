@@ -1,12 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
-
-
-
 import cook from "../components/cookhouse/cook"
-
-
+import mainpage from "../components/mainpage/mainpage"
 import backstagejs from '../components/backstage/backstage';
 import serve from "../components/serve/serve";
 
@@ -19,6 +14,7 @@ export default new Vuex.Store({
     	serve,
     	cook,
       	backstagejs,
+      	mainpage
 
     }
 })
