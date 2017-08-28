@@ -1,12 +1,10 @@
 <template>
   <div id="app">
     <router-view></router-view>
-  
   </div>
 </template>
 
 <script>
-
 
 import overBookingCom from "./components/OverBooking/overBookingCom.vue";
 
@@ -16,17 +14,12 @@ import  backstageComponent from './components/backstage/backstage.vue';
 import mainpage from "./components/mainpage/mainpage.vue"
   export default {
     components: {
-     	serve,
-     	backstageComponent,
-     	cook,
-
+      serve,
+      backstageComponent,
+      cook,
       mainpage,
-
       overBookingCom,
-
-	}
-
-
+    }
   }
 </script>
 

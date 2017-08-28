@@ -29,8 +29,8 @@
 					<span class="last"><el-input
 						  placeholder="搜索..."
 						  icon="search"
-						  v-model="input2"
-						  @click="seek(input2)">
+						  v-model="inputSeek"
+						  @click="seek(inputSeek)">
 						</el-input>
 					</span>
 				</p>
@@ -56,6 +56,7 @@
 						<span>是</span>
 					</li>
 				</ul>
+				<p v-show="this.$store.state.backstagejs.category.length >15">6666</p>
 			</div>
 		</div>
 		<div class="shade" v-show="shade"></div>
@@ -77,24 +78,24 @@
 	import Axios from 'axios';
 	import addComponent from './add.vue';
 	import compileComponent from './compile.vue';
-	console.log(addComponent)
 	Vue.use(ElementUI);
 
 	export default {
 		name: 'backstage',
 		data: function() {
 			return {
-				input2: '',
+				inputSeek: '',
 				// classifyArr: [],
 				// length: this.$store.state.backstagejs.category.length ,
 				head: '',
+				arr: this.$store.state.backstagejs.category,
 				// category: [],
 				shade: false,
 				addshade: false,
 				compileshade: false,
 				delshade: true,
 				currentIndex:  0,
-				msgObj: {}
+				msgObj: {},
 			}	
 		},
 		components: {
@@ -103,8 +104,6 @@
 		},
 		methods: {
 			btn: function(value, index){
-				// console.log('btn666')
-				// console.log(value)
 				this.head = (index+1) + '. '+ value;
 				this.currentIndex = 0;
 				this.$store.dispatch('category', value);
@@ -112,8 +111,12 @@
 			post: function(){
 				this.$store.dispatch('actionsPost')
 			},
-			seek: function(ev){
-				console.log(ev)
+			seek: function(res){
+				if(/^\d+$/.test(res)){
+					this.$store.dispatch('seekNum', res);
+				}else{
+					this.$store.dispatch('seekName', res);
+				}
 			},
 			add: function(){
 				if(!this.shade){
@@ -122,18 +125,17 @@
 				}				
 			},
 			compile: function(){
-				if(!this.shade && this.head){
+				if((!this.shade && this.head) || this.$store.state.backstagejs.amend ){
 					this.shade = true;
 					this.compileshade = true;
 					
 					this.msgObj = this.$store.state.backstagejs.category[this.currentIndex]
-
 					// this.$store.dispatch('compilemsg', this.msgObj)
 					// console.log('adasd', this.$store.state.backstagejs.category)
 				}
 			},
 			del: function(){
-				if(this.currentIndex != null && this.head){
+				if(this.head || this.$store.state.backstagejs.amend){
 					// console.log(this.category[this.currentIndex])
 					// console.log(this.$confirm)
 					this.$confirm('此操作将永久删除这条信息, 是否继续?', '提示', {
@@ -174,6 +176,13 @@
 		},
 		beforeMount: function(){
 			
-		}
+		},
+		mounted: function(){
+			document.onkeyup = function(e){
+				if(e.keyCode == 13){
+					this.seek(this.inputSeek)
+				}
+			}.bind(this)
+	    }
 	}
 </script>
