@@ -1,4 +1,4 @@
-
+import Vue from 'vue';
 import Vuex from 'vuex';
 
 import router from "./router/index"
@@ -9,7 +9,5 @@ new Vue({
   el: '#app',
   store,
   router,
-
   render: h => h(app)
-
 })
