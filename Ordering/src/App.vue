@@ -7,9 +7,11 @@
 
 <script>
 import light from "./components/light/light.vue";
+import serve from "./components/serve/serve.vue"
   export default {
     components: {
      	light,
+     	serve
     }
   }
 </script>
