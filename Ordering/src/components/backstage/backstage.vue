@@ -30,7 +30,7 @@
 						  placeholder="搜索..."
 						  icon="search"
 						  v-model="input2"
-						  @click="handleIconClick(input2)">
+						  @click="seek(input2)">
 						</el-input>
 					</span>
 				</p>
@@ -62,6 +62,9 @@
 		<div class="add" v-show="addshade">
             <addComponent></addComponent>   
 		</div>
+		<div class="compile" v-show="compileshade">
+			<compileComponent :msgObj="msgObj"></compileComponent>
+		</div>
 	</div>
 
 </template>
@@ -73,6 +76,7 @@
 	import './backstage.scss';
 	import Axios from 'axios';
 	import addComponent from './add.vue';
+	import compileComponent from './compile.vue';
 	console.log(addComponent)
 	Vue.use(ElementUI);
 
@@ -87,12 +91,15 @@
 				// category: [],
 				shade: false,
 				addshade: false,
+				compileshade: false,
 				delshade: true,
-				currentIndex: null,
+				currentIndex:  0,
+				msgObj: {}
 			}	
 		},
 		components: {
 			addComponent,
+			compileComponent
 		},
 		methods: {
 			btn: function(value, index){
@@ -105,23 +112,28 @@
 			post: function(){
 				this.$store.dispatch('actionsPost')
 			},
-			handleIconClick: function(ev){
+			seek: function(ev){
 				console.log(ev)
 			},
 			add: function(){
 				if(!this.shade){
 					this.shade = true;
 					this.addshade = true;
-				}
-				
+				}				
 			},
 			compile: function(){
-				if(!this.shade){
+				if(!this.shade && this.head){
 					this.shade = true;
+					this.compileshade = true;
+					
+					this.msgObj = this.$store.state.backstagejs.category[this.currentIndex]
+
+					// this.$store.dispatch('compilemsg', this.msgObj)
+					// console.log('adasd', this.$store.state.backstagejs.category)
 				}
 			},
 			del: function(){
-				if(this.currentIndex != null){
+				if(this.currentIndex != null && this.head){
 					// console.log(this.category[this.currentIndex])
 					// console.log(this.$confirm)
 					this.$confirm('此操作将永久删除这条信息, 是否继续?', '提示', {
@@ -129,7 +141,8 @@
 							cancelButtonText: '取消',
 							type: 'warning'
 						}).then(() => {
-							Axios.get('http://localhost:1212/del?id=' + this.category[this.currentIndex].id).then(function(res){
+							console.log(6666)
+							Axios.get('http://localhost:1212/del?id=' + this.$store.state.backstagejs.category[this.currentIndex].id).then(function(res){
 								if(res.data.succeed){
 									this.btn(this.head.substring(3), this.head.substring(0, 1)-1);
 									this.$message({
@@ -150,8 +163,7 @@
 							message: '已取消删除'
 						});          
 					});
-				}
-				
+				}				
 			},
 			Selected: function(index, ev){
 				this.currentIndex = index;

@@ -24,6 +24,7 @@ module.exports = {
 		item = item.slice(0,-1);
 		str = str.slice(0,-1);
 		var  addSql = 'INSERT INTO' + ' ' + list + '(' + item + ') VALUES('+ str +')';
+		console.log(addSql)
 		connection.query(addSql, arr, function (err, result) {
 		    if(!err){
 			    if(callback && typeof callback == 'function'){
@@ -64,7 +65,7 @@ module.exports = {
 		// SELECT * FROM menufile WHERE menufile.FenLei = '点心'
 		var key = Object.keys(data)[0];
 		var sql = 'SELECT * FROM ' + ' '+ list+ ' '+'WHERE ' + list+'.'+ key + '='+"'"+data[key]+"'";
-		console.log(sql); console.log(key);
+		// console.log(sql); console.log(key);
 		connection.query(sql, function(err, result) {
 		    if(!err){
 			    if(callback && typeof callback == 'function'){

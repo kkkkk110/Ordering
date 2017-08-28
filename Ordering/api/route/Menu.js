@@ -30,20 +30,32 @@ module.exports = {
         })
         app.get('/category', function(request, response){
             mysql.category('menufile', request.query, function(result){
-                console.log(request.query)
                 response.send(result)
             })
         }),
         app.get('/del', function(request, response){
+            console.log('del666')
             mysql.delete('menufile', request.query, function(result){
-                console.log(result)
                 if(result.affectedRows > 0){
                    response.send({succeed:true}) 
                 }else{
                     response.send({succeed:false}) 
-                }
-                
+                }    
+            })
+        }),
+        app.get('/add', function(request, response){
+            console.log(request.query)
+            mysql.add('menufile', request.query, function(result){
+                response.send(result);
+            })
+        }),
+
+        app.get('/renewal', function(request, response){
+            console.log(request.query)
+            mysql.update('menufile', request.query, function(result){
+                response.send(result);
             })
         })
+
     }
 }
