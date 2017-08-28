@@ -52,6 +52,7 @@
 </template>
 <script>
   // import Vue from 'vue';
+  import Axios from 'axios';
   export default {
     name: 'addComponent',
     data() {
@@ -101,6 +102,14 @@
     methods: {
       submitForm(formName) {
         console.log(this.ruleForm)
+        let str = `name=${this.ruleForm.name}&number=${this.ruleForm.number}&TeSe=${this.ruleForm.desc}&FenLei=${this.ruleForm.cailei}&price=${this.ruleForm.price}&VIPprice=${this.ruleForm.VIPprice}`
+        console.log(str)
+        Axios.get('http://localhost:1212/add?' + str).then(function(res){
+           this.$parent.shade = false;
+           this.$parent.addshade = false;
+          // state.category = res.data;
+          console.log(res)
+        }.bind(this))
         // this.$refs[formName].validate((valid) => {
         //   if (valid) {
         //     alert('submit!');
@@ -119,7 +128,7 @@
       }
     },
     created: function(){
-      console.log('aaa', this)
+      // console.log('aaa', this)
     }
 
   }

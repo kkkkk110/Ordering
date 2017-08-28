@@ -129,7 +129,8 @@
 							cancelButtonText: '取消',
 							type: 'warning'
 						}).then(() => {
-							Axios.get('http://localhost:1212/del?id=' + this.category[this.currentIndex].id).then(function(res){
+							console.log(6666)
+							Axios.get('http://localhost:1212/del?id=' + this.$store.state.backstagejs.category[this.currentIndex].id).then(function(res){
 								if(res.data.succeed){
 									this.btn(this.head.substring(3), this.head.substring(0, 1)-1);
 									this.$message({
