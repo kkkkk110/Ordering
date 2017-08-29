@@ -6,6 +6,7 @@ import backstageComponent from '../components/backstage/backstage.vue';
 import cook from "../components/cookhouse/cook.vue";
 import serve from "../components/serve/serve.vue"
 import mainpage from "../components/mainpage/mainpage.vue"
+import loginComponent from '../components/login/login.vue';
 
 
 Vue.use(VueRouter)
@@ -19,7 +20,9 @@ const router = new VueRouter({
 		{path:'/cook',component:cook},
 
 		{path:'/serve',component:serve},
-		{path:'/',component:mainpage}
+		{path:'/',component:mainpage},
+
+		{path: '/login', component: loginComponent}
 
 	]
 })
