@@ -22,6 +22,7 @@ import $ from 'jquery'
             }
         },
         beforeMount: function(){
+            console.log(99)
         axios.post('http://localhost:1212/lh').then(function (res) {
        for(var i=0;i<res.data.length;i++){
            if(res.data[i].FenLei=='中餐'){

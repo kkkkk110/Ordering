@@ -13,7 +13,9 @@ export default new Vuex.Store({
     	serve,
     	cook,
       	backstagejs,
+
       	mainpage,
+
 
     }
 })

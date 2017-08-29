@@ -54,8 +54,11 @@ module.exports = {
 		LinkMysql();
 		var  sql = 'SELECT * FROM ' + ' '+ list;
 		connection.query(sql, function(err, result) {
+<<<<<<< HEAD
 			console.log(sql)
 			console.log(err);
+=======
+>>>>>>> f68277b5e7ba4647e1990ff007b0faf1736c1540
 		    if(!err){
 			    if(callback && typeof callback == 'function'){
 			    	callback(result);
