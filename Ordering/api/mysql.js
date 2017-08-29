@@ -10,7 +10,9 @@ function LinkMysql(){
 		password : '',
 		database : database
 	});
-	connection.connect();
+	connection.connect(function(err){
+		console.log(err);
+	});
 }
 module.exports = {
 	add: function(list, data, callback){
@@ -52,6 +54,7 @@ module.exports = {
 		LinkMysql();
 		var  sql = 'SELECT * FROM ' + ' '+ list;
 		connection.query(sql, function(err, result) {
+
 		    if(!err){
 			    if(callback && typeof callback == 'function'){
 			    	callback(result);

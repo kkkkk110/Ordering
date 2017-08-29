@@ -108,8 +108,6 @@
                     }
                     this.$parent.btn(this.msgObj.FenLei, idx);
                 }.bind(this))
-
-
             },
             resetForm(formName) {
                 this.$refs[formName].resetFields();

@@ -20,33 +20,35 @@
 			</div>
 			<div class="cooklist">
 				<div class="cooklist_title">
-					<span>
-						 <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" >全选</el-checkbox>
+					<span class="cookCheck">
+						<label for="checkAll">
+							全选
+							<input type="checkbox" class="checkAll" id="checkAll">
+						</label>
 					</span>
 					<span>菜品</span>
 					<span>数量</span>
 					<span>价格</span>
 				</div>
 				<div class="cooklist_data">
+					
 					<ul>
-						<li v-for="(value,index) in foodlength" >
+						<li v-for="(value,index) in foodlength">
 							<span class="chioce_cook">
-								<el-checkbox-group>
-								    <el-checkbox></el-checkbox>
-							 	</el-checkbox-group>
+							    <input type="checkbox" class="littleCheck" id="littleCheck">
 							</span>
 							<span class="title_cook">
 								<i>
-									<img src="../../assets/imgs/drinks/timg (1).jpg" />
+									<img src="../../assets/imgs/drinks/timg18.jpg" />
 								</i>
-								<span>{{value.name}}</span>
+								<strong>{{value.name}}</strong>
 							</span>
 							<span class="title_num">
-								<span class="reduce">-</span>
-								<input name="Gqty" id="Gqty" type="text"   value="1">
-								<span class="plus">+</span>
+								<span class="reduce" @click="down(index,value.price)">-</span>
+								<span class="num_qty" ref="numUp">1</span>
+								<span class="plus" @click="up(index,value.price)">+</span>
 							</span>
-							<span class="title_price">
+							<span class="title_price" ref="num_price">
 								{{value.price}}
 							</span>
 							<span class="title_del el-icon-close">
@@ -54,12 +56,13 @@
 							</span>
 						</li>
 					</ul>
+					<div class="buttonList">
+						<el-button type="danger" class="underDan" @click="underOdd(foodlength)">下单</el-button>
+					</div>
 				</div>
 				
 			</div>
-			<div class="buttonList">
-				<button class="underDan" @click="underOdd(foodlength)">下单</button>
-			</div>
+			
 		</div>
 	</div>
 </template>
@@ -75,6 +78,9 @@
 				food:[],
 				checkAll: true,
 				isIndeterminate: true,
+				checkedCities: ['a', 'b'],
+				num:1,
+				total:''
 			}
 		},
 		beforeMount:function(){
@@ -85,15 +91,35 @@
 			}.bind(this))
 		},
 		computed:{
-			foodlength:function(){
-				return this.food.slice(0,10)
+			foodlength:{
+				get: function(){
+                    return this.food.slice(0,10)
+                },
+                set: function(newValue){
+                    this.food = newValue
+                }
 			}
 		},
 		methods: {
-	      underOdd:function(value){
-	      	console.log(value)
-	      	socket.emit('aa',value)
-	      }
-	    }
+	    	underOdd:function(value){
+		      	
+		      	socket.emit('aa',value)
+	    	},
+	    	up:function(e,aa){
+	    		
+	    		this.$refs.numUp[e].innerText++;
+	    		var total = this.$refs.numUp[e].innerText*aa
+	    		this.$refs.num_price[e].innerText=total;
+	    	},
+	    	down:function(e,aa){
+	    		
+	    		if(this.$refs.numUp[e].innerText>1){
+	    			this.$refs.numUp[e].innerText--;
+	    		}
+	    		var total = this.$refs.numUp[e].innerText*aa
+	    		this.$refs.num_price[e].innerText=total;
+	    	}
+		   
+		}
 	}
 </script>
