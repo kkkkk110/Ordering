@@ -31,6 +31,6 @@
 		}
 		.list-enter{opacity: 0; transform: translateY(-300px);}
 		.list-enter-active{transition: all .5s;}
-		.list-leave-active{transition: all 0.5s; opacity: 0; transform: translateX(300px);}
+		.list-leave-active{transition: all 0.5s; opacity: 0; transform: translateY(300px);}
 	
 }
