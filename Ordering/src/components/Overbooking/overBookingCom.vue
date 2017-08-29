@@ -39,7 +39,7 @@
 							</span>
 							<span class="title_cook">
 								<i>
-									<img src="../../assets/imgs/drinks/timg (1).jpg" />
+									<img src="../../assets/imgs/drinks/timg18.jpg" />
 								</i>
 								<strong>{{value.name}}</strong>
 							</span>

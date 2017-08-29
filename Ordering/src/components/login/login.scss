@@ -1,0 +1,33 @@
+#login{
+	width: 400px;
+	height: 220px;
+	padding: 15px;
+	padding-left: 0;
+	border: 1px solid #ccc;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -80%);
+	background: #FFFFFF;
+	box-shadow: -30px 30px 50px rgba(0, 0, 0, 0.32);
+	border-radius: 10px;
+	margin: 0 auto;
+	h2{
+		text-align: center;
+		margin-bottom: 15px;
+	}
+	.center{
+		// text-align: center;
+		padding-left: 40px;
+	}
+	// .el-form-item{
+	// 	text-align: center;
+	// 	// margin-left: -30px;
+	// }
+	// .el-button{
+	// 	margin-right:50px;
+	// }
+	.el-form-item__content{
+		margin-bottom: 10px;
+	}
+}

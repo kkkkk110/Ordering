@@ -55,7 +55,18 @@ module.exports = {
             mysql.update('menufile', request.query, function(result){
                 response.send(result);
             })
+        }),
+        app.get('/seekNum', function(request, response){
+            mysql.seek('menufile', request.query, function(result){
+                response.send(result)
+            })
+        }),
+        app.get('/seekName', function(request, response){
+            mysql.seek('menufile', request.query, function(result){
+                response.send(result)
+            })
         })
+
 
     }
 }

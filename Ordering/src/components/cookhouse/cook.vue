@@ -2,15 +2,19 @@
 	
 	<div class="cook">
 		<div class="left">
-			<p>新的菜单</p>
+			<p>新的菜单</p>  
 			<div class="left_men">
-				
-				<div v-for="(value,index) in num" class="f_men" @click="click" :id="index">
-				{{value}}
-				<transition appear appear-class="f-enter" appear-active-class="f-enter-active">
-					<div class="men"></div>
-				</transition>
-				</div>
+				<transition-group nama="lis">
+					<div v-for="(value,index) in num" class="f_men" :key="index" @click="click" :id="index" >
+
+						名称：{{value.name}}<br/>
+						编号:{{value.number}}<br/>
+						口味：{{value.tese}}	
+						<transition appear appear-class="f-enter" appear-active-class="f-enter-active">
+							<div class="men" :key="index"></div>
+						</transition>
+					</div>
+				</transition-group>
 			</div>
 			
 		</div>
@@ -18,7 +22,9 @@
 			<p>正在进行菜单</p>
 			<div class="right-menio">
 				<div v-for="(value,index) in cook" class="f_menio" @click="clickio" :id="index">
-				{{value}}
+				名称：{{value.name}}<br/>
+				编号：{{value.number}}<br/>
+				口味：{{value.tese}}
 				<transition appear appear-class="f-enter" appear-active-class="f-enter-active">
 					<div class="menio"></div>
 				</transition>
@@ -33,31 +39,32 @@
 <script>
 	import "./cook.scss";
 	import vue from "vue"
-	
+
 	var socket = io.connect('ws://localhost:888');
 	
 
-	
+		
 	export default{
 		data:function(){
 			return {
-				num:["而温热我认为1","而温热我认为2","而温热我认为3"],
+				num:[],
 				cook:[]
 			}
 		},
 		methods:{
-			addnum:function(){
-				this.num.splice(0,1)
-				this.cook.push("sfsf")
-			},
+			// addnum:function(){
+			// 	this.num.splice(0,1)
+			// 	this.cook.push("sfsf")
+			// },
 			click:function(event){
-			
+		
 				this.cook.push(this.num[event.target.id])
 				this.num.splice(event.target.id,1)
 
 					
 			},
 			clickio:function(event){
+			
 				this.cook.splice(event.target.id,1)
 				console.log(event.target.innerText)
 				socket.emit('serve',event.target.innerText)
@@ -65,13 +72,19 @@
 		},
 		created:function(){
 				
-		var  cooks = "{name:撒旦撒旦撒旦撒旦撒,age:19}"
-		var cc = JSON.stringify(cooks)
-
-				socket.emit('aa',cooks)
-
+	
 				socket.on('bbs',function(aa){
-						this.num.push(aa)
+				
+						for(var i=0;i<aa.length;i++){
+							var soc = {}
+							soc.name = aa[i].name;
+							soc.number = aa[i].number;
+							soc.tese = aa[i].TeSe
+							this.num.push(soc)
+						}
+						console.log(this.num)
+					
+				
 					}.bind(this))
 		}
 	

@@ -4,7 +4,8 @@ import Axios from 'axios';
 const state = {
 	classify: [],
 	category: [],
-	msg: {}
+	msg: {},
+	amend: false,
 }
 
 const actions = {
@@ -17,6 +18,12 @@ const actions = {
 	},
 	compilemsg: (store, value) => {
 		store.commit('compilemsg',  value)
+	},
+	seekNum: (store, value) => {
+		store.commit('seekNum',  value)
+	},
+	seekName: (store, value) => {
+		store.commit('seekName',  value)
 	},
 }
 const mutations = {
@@ -37,7 +44,20 @@ const mutations = {
 	},
 	compilemsg: (store, value) =>{
 		state.msg = value;
+	},
+	seekNum: (store,  value) => {
+		Axios.get('http://localhost:1212/seekNum?number=' + value).then(function(res){
+			state.category = res.data;
+			state.amend = true;
+		})
+	},
+	seekName: (store,  value) => {
+		Axios.get('http://localhost:1212/seekName?name=' + value).then(function(res){
+			state.category = res.data;
+			state.amend = true;
+		})
 	}
+
 }
 
 export default {
