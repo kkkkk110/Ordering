@@ -1,7 +1,8 @@
 <template>
 	<div id="listhome">
 		<div class="listhometop">
-			<h1>餐厅菜单</h1>
+			<h1>餐厅菜单</h1> 
+			<h2 style="margin-left:800px;"> <router-link to="/overBookingCom">我的菜单</router-link></h2>
 		</div>
 		<listlogin></listlogin>
 		<div class="list-body">

@@ -1,7 +1,7 @@
 <template>
 	<div class="mainpage">
 		<div class="mainpage1">
-			<router-link to="">.前端点餐</router-link>
+			<router-link to="/listhome">.前端点餐</router-link>
 				
 		
 		</div>
