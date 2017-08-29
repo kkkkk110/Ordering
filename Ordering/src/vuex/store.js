@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 
 
+import overbooking from "../components/Overbooking/overbooking"
 
 import cook from "../components/cookhouse/cook"
 
@@ -15,7 +16,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     modules: {
-
+    	overbooking,
     	serve,
     	cook,
       	backstagejs,
