@@ -3,14 +3,7 @@
 		<div class="listhometop">
 			<h1>餐厅菜单</h1>
 		</div>
-		<div id="listlogin-box">
-		<div class="listlogin-body">
-		<input type="text" class="tnumber" placeholder="台号">
-		<input type="text" class="pnumber" placeholder="人数">
-	    <button class="ent" @click="goent">提交</button>
-	    	<router-view></router-view>
-	    </div>
-	</div>
+		<listlogin></listlogin>
 		<div class="list-body">
 		<listnav></listnav>
 		</div>
@@ -29,7 +22,7 @@
 <script>
 import $ from 'jquery';
 import './listhome.scss'
-// import listlogin from './listlogin/listlogin.vue';
+import listlogin from './listlogin/listlogin.vue';
 import listnav from './nav/listnav.vue';
 import tdlist from './list/tdlist.vue';
 // import ypstyle from './list/ypstyle.vue';
@@ -40,7 +33,7 @@ import axios from 'axios';
 
 	export default {
 		components: {
-			// 'listlogin':listlogin,
+			'listlogin':listlogin,
 			'listnav': listnav,
 			'tdlist':tdlist
 			// 'ypstyle':ypstyle,

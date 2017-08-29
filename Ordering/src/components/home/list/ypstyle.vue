@@ -1,11 +1,11 @@
 <template>
     <div id="ypstyle">
         <h1>饮品</h1>
-        <span><router-link to="/listhome">返回</router-link></span>
+        <span id="sp"><router-link to="/listhome">返回</router-link></span>
         <ul>
             <li v-for="(obj, index) in listh2" >
                 <img :src="'./src/assets/imgs/drinks/'+obj.img" >
-                <span>{{obj.name}}</span><span>{{obj.price}}元</span>
+                <span id="sp">{{obj.name}}</span><span id="sp">{{obj.price}}元</span>
             </li>
         </ul>
     </div>
