@@ -50,6 +50,13 @@ module.exports = {
             })
         }),
 
+        app.get('/addclassify', function(request, response){
+            console.log(request.query)
+            mysql.add('classify', request.query, function(result){
+                response.send(result);
+            })
+        }),
+
         app.get('/renewal', function(request, response){
             console.log(request.query)
             mysql.update('menufile', request.query, function(result){

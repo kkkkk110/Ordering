@@ -218,17 +218,23 @@
 		background-color: #000;
 		
 	}
-	.add,.compile{
+	.add,.compile,.addClassify{
+
 		width: 450px;
 		position: absolute;
 		padding: 20px 20px 0 0;
 		border-radius: 10px;
-		top: 100px;
+		top: 50%;
 		left: 50%;
-		transform: translateX(-230px);
+		transform: translate(-50%, -50%);
 		// transform:translateY(-230px);
 		margin: 0 auto;
 		background-color:#fff;
+		.el-checkbox{
+			margin-left: 30px;
+			margin-bottom: 10px;
+			// overflow: hidden;
+		}
 	}
 
 }

@@ -12,33 +12,33 @@
 </template>
 
 <script type="text/javascript">
-import './mbstyle.scss';
-    import axios from 'axios';
-    import $ from 'jquery'
-	export default {
-        data:function(){
-            return{
-            listh2:[],
-            }
-        },
-        created: function(){
-            console.log(1111)
-        axios.post('http://localhost:1212/lh').then(function (res) {
-            console.log(999)
-       for(var i=0;i<res.data.length;i++){
-            if(res.data[i].FenLei=='面包'){
+// import './mbstyle.scss';
+ //    import axios from 'axios';
+ //    // import $ from 'jquery'
+	// export default {
+ //        data:function(){
+ //            return{
+ //            listh2:[],
+ //            }
+ //        },
+ //        created: function(){
+ //            console.log(1111)
+ //        axios.post('http://localhost:1212/lh').then(function (res) {
+ //            console.log(999)
+ //       for(var i=0;i<res.data.length;i++){
+ //            if(res.data[i].FenLei=='面包'){
 
-            this.listh2.push(res.data[i]);
-            }
-        }
-         console.log(this.listh2);
+ //            this.listh2.push(res.data[i]);
+ //            }
+ //        }
+ //         console.log(this.listh2);
         
-        console.log(res.data.FenLei);
-          console.log(res.data);
-        }.bind(this));
-        }
+ //        console.log(res.data.FenLei);
+ //          console.log(res.data);
+ //        }.bind(this));
+ //        }
 
-            }
+ //            }
 
 	
 </script>

@@ -13,7 +13,7 @@
 
 <script>
 
-import $ from 'jquery';
+// import $ from 'jquery';
 import './listnav.scss';
 	export default {
 }

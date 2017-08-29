@@ -7,9 +7,6 @@
 		</div>
 		<div class="main">
 			<div class="left">
-
-				<!-- <p><i class="el-icon-plus"></i>新增分类</p> -->
-
 				<p ref="abc" @click="addclassify"><i class="el-icon-plus"></i>新增分类</p>
 
 				<p>全部菜品</p>
@@ -69,6 +66,9 @@
 		<div class="compile" v-show="compileshade">
 			<compileComponent :msgObj="msgObj"></compileComponent>
 		</div>
+		<div class="addClassify" v-show="classifyshade">
+			<ClassifyComponent></ClassifyComponent>
+		</div>
 	</div>
 </template>
 
@@ -80,6 +80,7 @@
 	import Axios from 'axios';
 	import addComponent from './add.vue';
 	import compileComponent from './compile.vue';
+	import ClassifyComponent from './addClassify.vue'
 	Vue.use(ElementUI);
 
 	export default {
@@ -94,14 +95,16 @@
 				shade: false,
 				addshade: false,
 				compileshade: false,
-				delshade: true,
+				classifyshade:false,
+				// delshade: true,
 				currentIndex:  0,
 				msgObj: {},
 			}	
 		},
 		components: {
 			addComponent,
-			compileComponent
+			compileComponent,
+			ClassifyComponent
 		},
 		methods: {
 			btn: function(value, index){
@@ -171,19 +174,16 @@
 			Selected: function(index, ev){
 				this.currentIndex = index;
 
-
 			},
 			addclassify: function(){
-				// console.log(666)
-				// this.$refs.abc.$emit('abcd')
-				console.log(this.$children)
-
+				if(!this.shade){
+					this.shade = true;
+					this.classifyshade = true;
+				}
 			}
 		},
 		created: function(){
 			this.$store.dispatch('classify')
-
-
 		},
 		beforeMount: function(){
 			

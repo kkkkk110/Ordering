@@ -14,7 +14,7 @@
 <script type="text/javascript">
 import './ypstyle.scss';
     import axios from 'axios';
-    import $ from 'jquery'
+    // import $ from 'jquery'
 	export default {
         data:function(){
             return{

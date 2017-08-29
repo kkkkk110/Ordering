@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import $ from 'jquery';
+// import $ from 'jquery';
 import './listhome.scss'
 import listlogin from './listlogin/listlogin.vue';
 import listnav from './nav/listnav.vue';

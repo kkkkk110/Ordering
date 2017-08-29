@@ -11,13 +11,13 @@
 
 <script>
 import './listlogin.scss'
-import $ from 'jquery';
+// import $ from 'jquery';
 	export default {
 		name: 'listlogin',
 		methods: {
 			goent: function(){
 				// console.log(this.$store.dispatch)
-				console.log($('.tnumber').val())
+				// console.log($('.tnumber').val())
 				this.$router.push({ path: '/listhome' })
 				// console.log($pnumber.val())
 				this.$store.dispatch('actionsBtn');
