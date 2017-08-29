@@ -1,0 +1,119 @@
+body{margin:0;padding:0;}
+
+
+.cook{
+		overflow: hidden;
+	.left{width:50%;float:left;border:1px solid #ccc;margin:0;padding:0;height:100%;height:1305px;
+		box-sizing:border-box;
+			p{
+				text-align: center;
+				font-size: 30px;
+				padding:20px 0;
+				margin:0;
+				border-radius:20px;
+				background-color: #CCFFFF;
+				border-bottom:10px solid #CCCC99;
+				font-weight: bold;
+				font-family: 'Microsoft YaHei';
+			}
+
+		.left_men{
+			overflow:scroll;	
+			height:1304px;
+			padding-bottom:80px;
+			box-sizing:border-box;
+			background:url('../../assets/imgs/timg15.jpg') repeat;
+			background-attachment:scroll;
+			opacity: 0.9;
+				.f_men{
+					border:1px solid #ccc;margin:15px;
+					border-radius:10px;
+					position:relative;
+					height:200px;
+					width:470px;
+					font-size: 34px;
+					font-weight: bold;
+					text-align: center;
+					line-height: 60px;
+					background:rgba(153,153,153,0.5);
+					overflow: hidden;
+
+				}
+
+	
+				.lis-enter{opacity: 0; transform: translateX(100px);}
+				.lis-enter-active{transition: all 5s;}
+				// .lis-leave-active{transition: all 5s; opacity: 0; transform: translateX(-100px);}
+			
+				.men{
+					
+					width: 0;
+					position: absolute;
+					background-color: #33FF00;
+					height:200px;
+					top:0;
+					left:0;
+					opacity: 0.5;
+					z-index:-100;
+					}
+
+				.f-enter{width:450px;}
+				.f-enter-active{transition:all 30s;}
+
+
+		}
+		
+	}
+	.right{width:50%;float:left;border:1px solid #ccc;border-left:0;margin:0;padding:0;height:1305px;
+		box-sizing:border-box;
+			p{
+				text-align: center;
+				font-size: 30px;
+				margin:0;
+				padding:20px 0;
+				background-color: #FF6633;
+				border-radius:20px;
+				border-bottom:10px solid #FF3300;
+				font-weight: bold;
+			}
+		.right-menio{
+			overflow:scroll;
+			height: 1304px;
+			padding-bottom:80px;
+			box-sizing:border-box;
+			background:url('../../assets/imgs/timg16.jpg');
+			opacity: 0.9;
+		
+		
+			.f_menio{
+					border:1px solid #ccc;margin:15px;
+					border-radius:10px;
+					position:relative;
+					height:200px;
+					width:470px;
+					font-size: 34px;
+					font-weight: bold;
+					text-align: center;
+					line-height: 60px;
+					background:rgba(204,102,204,0.5);
+					overflow: hidden;
+					// z-index: 1000;
+				}
+				.menio{
+					width: 0;
+					position: absolute;
+					
+					background-color: #FF3300;
+					height:200px;
+					top:0;
+					left:0;
+					opacity: 0.5;
+					z-index:-100;
+				}
+				.f-enter{width:450px;}
+				.f-enter-active{transition:all 30s;}
+		}
+			
+
+	}	
+}

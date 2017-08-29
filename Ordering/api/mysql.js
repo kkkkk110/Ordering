@@ -10,7 +10,9 @@ function LinkMysql(){
 		password : '',
 		database : database
 	});
-	connection.connect();
+	connection.connect(function(err){
+		console.log(err);
+	});
 }
 module.exports = {
 	add: function(list, data, callback){
@@ -24,6 +26,7 @@ module.exports = {
 		item = item.slice(0,-1);
 		str = str.slice(0,-1);
 		var  addSql = 'INSERT INTO' + ' ' + list + '(' + item + ') VALUES('+ str +')';
+		console.log(addSql)
 		connection.query(addSql, arr, function (err, result) {
 		    if(!err){
 			    if(callback && typeof callback == 'function'){
@@ -38,6 +41,36 @@ module.exports = {
 		var id = Object.keys(data);
 		var delSql = 'DELETE FROM ' + ' ' + list + ' where '+ ' ' + id +'=' +data[id];
 		connection.query(delSql, function(err, result) {
+		    if(!err){
+			    if(callback && typeof callback == 'function'){
+			    	callback(result);
+			    }
+		    }          
+		});
+		connection.end();
+	},
+	//查询一个表所有数据
+	query: function(list, callback){
+		LinkMysql();
+		var  sql = 'SELECT * FROM ' + ' '+ list;
+		connection.query(sql, function(err, result) {
+			console.log(sql)
+			console.log(err);
+		    if(!err){
+			    if(callback && typeof callback == 'function'){
+			    	callback(result);
+			    }
+		    }          
+		});
+		connection.end();
+	},
+	category: function(list, data, callback){
+		LinkMysql();
+		// SELECT * FROM menufile WHERE menufile.FenLei = '点心'
+		var key = Object.keys(data)[0];
+		var sql = 'SELECT * FROM ' + ' '+ list+ ' '+'WHERE ' + list+'.'+ key + '='+"'"+data[key]+"'";
+		// console.log(sql); console.log(key);
+		connection.query(sql, function(err, result) {
 		    if(!err){
 			    if(callback && typeof callback == 'function'){
 			    	callback(result);
@@ -62,6 +95,22 @@ module.exports = {
 		// console.log(data)
 		// var delSql = 'DELETE FROM ' + ' ' + list + ' where '+ ' ' + id +'=' +data[id];
 		connection.query(modSql, arr, function(err, result) {
+		    if(!err){
+			    if(callback && typeof callback == 'function'){
+			    	callback(result);
+			    }
+		    }          
+		});
+		connection.end();
+	},
+	seek: function(list, data, callback){
+		LinkMysql();
+		// SELECT * FROM menufile WHERE menufile.name LIKE '%红%'
+		var key = Object.keys(data)[0];
+
+		var sql = `SELECT * FROM ${list} WHERE ${list}.${key} LIKE '%${data[key]}%'`;
+
+		connection.query(sql, function(err, result) {
 		    if(!err){
 			    if(callback && typeof callback == 'function'){
 			    	callback(result);
