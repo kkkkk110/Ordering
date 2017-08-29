@@ -1,6 +1,10 @@
 var path = require('path');
 var users = require('./users');
 var Menu = require('./Menu');
+<<<<<<< HEAD
+var lh = require('./lh');
+=======
+>>>>>>> f68277b5e7ba4647e1990ff007b0faf1736c1540
 var overBooking = require('./overBooking')
 
 module.exports = {
@@ -17,6 +21,7 @@ module.exports = {
 		      next();
 		    }
 		});
+		lh.Register(app);
         users.Register(app);
        	Menu.Register(app);
        	overBooking.Register(app);

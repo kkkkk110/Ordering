@@ -7,7 +7,11 @@
 		</div>
 		<div class="main">
 			<div class="left">
-				<p><i class="el-icon-plus"></i>新增分类</p>
+
+				<!-- <p><i class="el-icon-plus"></i>新增分类</p> -->
+
+				<p ref="abc" @click="addclassify"><i class="el-icon-plus"></i>新增分类</p>
+
 				<p>全部菜品</p>
 				<ul>
 					<li v-for="(obj, index) in this.$store.state.backstagejs.classify" @click="btn(obj.name,index)" :key="index">{{index + 1}}. {{obj.name}}</li>
@@ -56,7 +60,6 @@
 						<span>是</span>
 					</li>
 				</ul>
-				<p v-show="this.$store.state.backstagejs.category.length >15">6666</p>
 			</div>
 		</div>
 		<div class="shade" v-show="shade"></div>
@@ -67,7 +70,6 @@
 			<compileComponent :msgObj="msgObj"></compileComponent>
 		</div>
 	</div>
-
 </template>
 
 <script>
@@ -86,7 +88,6 @@
 			return {
 				inputSeek: '',
 				// classifyArr: [],
-				// length: this.$store.state.backstagejs.category.length ,
 				head: '',
 				arr: this.$store.state.backstagejs.category,
 				// category: [],
@@ -169,15 +170,28 @@
 			},
 			Selected: function(index, ev){
 				this.currentIndex = index;
+
+
+			},
+			addclassify: function(){
+				// console.log(666)
+				// this.$refs.abc.$emit('abcd')
+				console.log(this.$children)
+
 			}
 		},
 		created: function(){
 			this.$store.dispatch('classify')
+
+
 		},
 		beforeMount: function(){
 			
 		},
 		mounted: function(){
+
+	// console.log('666', this.$refs.abc, this.$nextTic);
+
 			document.onkeyup = function(e){
 				if(e.keyCode == 13){
 					this.seek(this.inputSeek)
