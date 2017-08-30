@@ -35,27 +35,20 @@ const router = new VueRouter({
 		{path:'/Wstyle',component:Wstyle},
 		{path:'/serve',component:serve},
 		{path:'/',component:mainpage},	
-		{path: '/login', component: loginComponent}
+		{path: '/login',name: 'login', component: loginComponent}
 
 
 	]
 })
 router.beforeEach((to, from, next) =>{
-	console.log('666', to);
+	// console.log('666', to);
 	if(to.name == 'backstage'){
-		if(window.localStorage.getItem('name')!= ''){
+		if(window.localStorage.getItem('name') == ''){
+			router.replace('login');
 			next();
 		}
-	}else{
-		
 	}
-
 	next();
-	// if(!window.localStorage.getItem('name')){
-
-		// router.replace('login');
-	// 	next();
-	// } 
 	
 })
 

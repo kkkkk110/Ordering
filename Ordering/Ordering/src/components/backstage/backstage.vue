@@ -3,10 +3,8 @@
 		<div class="head">
 
 			<span class="left"><i class="el-icon-arrow-left"><router-link to="/">返回 </router-link></i></span>
-
-			<!-- <span class="left"><i class="el-icon-arrow-left">返回</i></span> -->
 			<span class="center">菜品后台管理系统</span>
-			<span class="right"><el-button type="primary" size="small"><router-link to="/">退出</router-link></el-button></span>
+			<span class="right" @click="quit"><el-button type="primary" size="small" ><router-link to="/">退出</router-link></el-button></span>
 		</div>
 		<div class="main">
 			<div class="left">
@@ -183,6 +181,10 @@
 					this.shade = true;
 					this.classifyshade = true;
 				}
+			},
+			quit: function(){
+				console.log(666)
+				window.localStorage.setItem('name', '')
 			}
 		},
 		created: function(){
