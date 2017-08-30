@@ -59,12 +59,12 @@
         methods: {
             submitForm(formName) {
                 console.log(this)
-                // Axios.get('http://localhost:1212/addclassify?name=' + this.ruleForm.name).then(function(res){
-                //     this.$parent.shade = false;
-                //     this.$parent.classifyshade = false;
-                //     this.$parent.$store.dispatch('classify');
-                //     this.$message({ type: 'success',message: '添加成功!'});       
-                // }.bind(this))
+                Axios.post('http://localhost:1212/addclassify?name=' + this.ruleForm.name, ).then(function(res){
+                    this.$parent.shade = false;
+                    this.$parent.classifyshade = false;
+                    this.$parent.$store.dispatch('classify');
+                    this.$message({ type: 'success',message: '添加成功!'});       
+                }.bind(this))
             },
             resetForm(formName) {
                 this.$refs[formName].resetFields();

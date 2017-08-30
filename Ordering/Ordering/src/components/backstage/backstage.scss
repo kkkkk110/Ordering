@@ -18,6 +18,7 @@
 		background-color: #ddd;
 		line-height: 40px;
 		span{
+			a{color: white;}
 			flex: 1;
 			display: block;
 			>i{
@@ -26,6 +27,9 @@
 				background-color: green;
 				padding: 5px 8px;
 				border-radius: 10px;
+				a{
+					color: white;
+				}
 			}
 		}
 		.left{
@@ -39,6 +43,7 @@
 		.right{
 			text-align: right;
 			padding-right:10px;
+			// color: white;
 		}
 	}
 	.main{

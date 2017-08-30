@@ -24,7 +24,7 @@ const router = new VueRouter({
 	routes:[
 		{path:'/overBookingCom',component:overBookingCom},
 	
-		{path: '/backstage', component: backstageComponent},
+		{path: '/backstage', name:'backstage', component: backstageComponent},
 
 		{path: '/listhome', component: listhome},
 		{path:'/cook',component:cook},
@@ -34,18 +34,29 @@ const router = new VueRouter({
 		{path:'/Cstyle',component:Cstyle},
 		{path:'/Wstyle',component:Wstyle},
 		{path:'/serve',component:serve},
-		{path:'/',component:mainpage},
-
-
-
-		
-		
-
+		{path:'/',component:mainpage},	
 		{path: '/login', component: loginComponent}
 
 
 	]
 })
+router.beforeEach((to, from, next) =>{
+	console.log('666', to);
+	if(to.name == 'backstage'){
+		if(window.localStorage.getItem('name')!= ''){
+			next();
+		}
+	}else{
+		
+	}
 
+	next();
+	// if(!window.localStorage.getItem('name')){
+
+		// router.replace('login');
+	// 	next();
+	// } 
+	
+})
 
 export default router

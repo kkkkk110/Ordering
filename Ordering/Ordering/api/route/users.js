@@ -18,6 +18,7 @@ module.exports = {
         }));
 
         app.post('/getuser', urlencodedParser, function(request, response){
+            console.log(request.body)
             mysql.user(request.body, function(result){
                 console.log(result)
                 response.send(result);

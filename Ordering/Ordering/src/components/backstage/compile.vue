@@ -46,7 +46,7 @@
             return {
                 ruleForm: {
                     number: '',
-                    name: this.msgObj.name,
+                    name: '',
                     price: '',
                     VIPprice: '',
                     cailei: '',

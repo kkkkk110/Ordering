@@ -19,6 +19,8 @@
 <script>
 	import './login.scss';
 	import Axios from 'axios';
+	import qs from 'qs';
+	import router from '../../router/index';
 
 	export default {
 		data: () =>{
@@ -30,9 +32,24 @@
 		methods: {
 			submitForm(formName) {
 				if(this.name.trim() != '' && this.psw.trim() != ''){
-					console.log(this.name, this.psw)
+					// console.log(this.name, this.psw)
+					let str = `name=${this.name.trim()}&psw=${this.psw.trim()}`;
+					let data = qs.stringify({
+						name: this.name.trim(),
+						psw: this.psw.trim()
+					})
+					console.log(str)
+					Axios.post('http://localhost:1212/getuser' , data).then(function(res){
+						console.log(res)
+						if(res.data.length > 0){
+							router.push({name: 'backstage'})
+							window.localStorage.setItem('name', this.name.trim());
+						}else{
+							 this.$message({ type: 'error',message: '用户名或密码错误!'})
+						}
+
+	                }.bind(this))
 				}
-				
 			},
 			resetForm(formName) {
 				this.name = '';
